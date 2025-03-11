@@ -1,13 +1,31 @@
-body {
-  font-family: "Raleway", sans-serif;
-}
+@import "tailwindcss";
 
-button {
-  font-family: "Montserrat", sans-serif;
-}
+@theme {
+  --font-raleway: "Raleway", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-cinzel: "Cinzel", sans-serif;
+  --font-creepster: "Creepster", cursive;
 
-h1 {
-  font-family: "Cinzel", sans-serif;
+  --color-orange: oklch(59.48% 0.168676 45.4846); /* #FFA500 */
+  --color-sweetwhite: oklch(97.02% 0 0); /* #F5F5F5 */
+  --color-purple: oklch(37.84% 0.1716 302.15); /* #551a8b */
+}
+@layer base {
+  body {
+    @apply font-raleway;
+  }
+  h1 {
+    @apply font-cinzel text-4xl;
+  }
+  h2 {
+    @apply font-cinzel text-2xl;
+  }
+  h3 {
+    @apply font-montserrat text-xl;
+  }
+  section {
+    @apply bg-black text-sweetwhite;
+  }
 }
 
 body.noscroll {
