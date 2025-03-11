@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getInvitesByName } from "../../../backend/backend.mjs";
+const invites = await getInvitesByName();
+import CardInvites from "../../components/CardInvites.astro";
+---
+
+<Layout title="Invités" description="Page des invités de Festiv'Halloween">
+  <h1>Les invités du Festival</h1>
+
+  <ul>
+    {
+      invites.map((invite) => (
+        <li>
+          <CardInvites {...invite} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

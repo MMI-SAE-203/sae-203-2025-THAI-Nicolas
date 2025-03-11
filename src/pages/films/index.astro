@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getFilmsByDate } from "../../../backend/backend.mjs";
+const films = await getFilmsByDate();
+---
+
+<Layout title="Films" description="Page des films de Festiv'Halloween">
+  <section>
+    <header>
+      <h1>Les films du Festival</h1>
+
+      <form action="/search" method="get" role="search">
+        <button type="submit">
+          <img
+            src="/assets/icones/search-icon.svg"
+            alt="Loupe de recherche"
+            aria-label="Rechercher un film"
+          />
+        </button>
+        <div>
+          <input
+            type="text"
+            placeholder="Rechercher un film..."
+            aria-label="Rechercher un film"
+          />
+        </div>
+      </form>
+    </header>
+
+    <ul>
+      {
+        films.map((film) => (
+          <li>
+            <img src={film.img} alt="Image de la couverture" />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

@@ -1,0 +1,14 @@
+---
+const { ...minitarif } = Astro.props;
+---
+
+<div>
+  <div>
+    <h3>{minitarif.titre}</h3>
+  </div>
+  <div>
+    <h3>{minitarif.prix}€/{minitarif.jour} jour</h3>
+    <p>{minitarif.description}</p>
+    <a href="">Achetez</a>
+  </div>
+</div>

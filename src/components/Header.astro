@@ -1,0 +1,40 @@
+---
+import FestivalLogo from "/src/assets/icones/festival-logo.webp";
+import ShoppingCart from "/src/assets/icones/shopping-cart.svg";
+---
+
+<header>
+  <div>
+    <a href="/index.html" aria-label="Retourner à l'accueil">
+      <img src={FestivalLogo.src} alt="" />
+    </a>
+  </div>
+
+  <div>
+    <a href="/panier.html" aria-label="Voir le panier">
+      <img src={ShoppingCart.src} alt="Panier" />
+    </a>
+
+    <button
+      class="menu-btn"
+      aria-label="Accéder au Menu"
+      aria-controls="mainNav"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="menu" id="mainNav" aria-hidden="true">
+      <ul>
+        <li><a href="/">LE FESTIVAL</a></li>
+        <li><a href="/">PROGRAMME</a></li>
+        <li><a href="/">LES ACTIVITÉS</a></li>
+        <li><a href="/">LES FILMS</a></li>
+        <li><a href="">NOS INVITÉS</a></li>
+        <li><a href="">INFOS PRATIQUES</a></li>
+        <li><a href="">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

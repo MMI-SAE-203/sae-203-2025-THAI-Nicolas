@@ -1,5 +1,7 @@
 ---
 const { title, description, image = "/screenshot.jpg" } = Astro.props;
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 const baseUrl = "https://www.example.com";
 const pageUrl = `${baseUrl}${Astro.url.pathname}`;
@@ -45,7 +47,6 @@ import "../styles/global.css";
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -53,7 +54,10 @@ import "../styles/global.css";
   </head>
   <body>
     <main>
+      <Header />
       <slot />
+      <Footer />
     </main>
+    <script type="module" src="/src/js/script.js"></script>
   </body>
 </html>

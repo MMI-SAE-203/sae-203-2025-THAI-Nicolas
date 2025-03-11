@@ -1,0 +1,9 @@
+---
+const { ...invite } = Astro.props;
+---
+
+<div>
+  <img src={invite.img} alt=`Photo de ${invite.prenom} ${invite.nom}` />
+  <h3>{invite.prenom} {invite.nom}</h3>
+  <p>{invite.metier}</p>
+</div>

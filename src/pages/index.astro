@@ -1,7 +1,92 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import MiniCardTarifs from "../components/MiniCardTarifs.astro";
+import { getTarifsMiniature } from "../../backend/backend.mjs";
+const minitarifs = await getTarifsMiniature();
 ---
 
-<Layout>
-  <h1>Hey salut</h1>
+<Layout title="Accueil" description="Page d'accueil de Festiv'Halloween">
+  <div>
+    <h1 class="text-red-100">Festiv'<span>Halloween</span></h1>
+    <p>29 au 31 octobre</p>
+    <h2>Passez un agréable moment de peur</h2>
+    <a href="">Découvrir</a>
+  </div>
+
+  <div>
+    <section>
+      <header>
+        <h2>Le meilleur du cinéma d'horreurs en un festival de 3 jours !</h2>
+      </header>
+      <div>
+        <div>
+          <span></span>
+          <img
+            src="/assets/icones/spider.webp"
+            alt="Araignée"
+            aria-hidden="true"
+          />
+        </div>
+        <div>
+          <p>
+            Plongez dans l'épouvante à travers des films terrifiants,
+            sélectionnées pour tous les âges et tous les niveaux de courages !
+          </p>
+          <a href="/billeterie.html">Je prends ma place</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h2>Réservez un créneau pour diffuser votre film !</h2>
+      </header>
+      <div>
+        <div>
+          <p>Vous êtes réalisateur ou créateur de films d'horreur ?</p>
+          <p>
+            Festiv'Halloween vous offre une plateforme unique pour présenter
+            votre travail devant un public passionné par l'épouvante !
+          </p>
+          <a href="/reserver-un-film.html">Réserver</a>
+        </div>
+        <div>
+          <img
+            src="/assets/icones/murderer.webp"
+            alt="Tueur"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section>
+    <header>
+      <h2>Les films à la une</h2>
+    </header>
+
+    <a href="/programme">
+      <img src="" alt="" />
+      <p>Le Programme</p>
+    </a>
+  </section>
+
+  <section>
+    <header>
+      <h2>Les tarifs</h2>
+    </header>
+    <ul>
+      {
+        minitarifs.map((minitarif) => (
+          <li>
+            <MiniCardTarifs {...minitarif} />
+          </li>
+        ))
+      }
+    </ul>
+    <a href="">Billeterie</a>
+  </section>
+
+  <section></section>
 </Layout>

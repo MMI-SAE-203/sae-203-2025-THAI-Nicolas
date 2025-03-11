@@ -2,24 +2,51 @@ import PocketBase from "pocketbase";
 const pb = new PocketBase("http://127.0.0.1:8090");
 
 export async function getFilmsByDate() {
-  const films = await pb.collection("films").getFullList({
-    sort: "date_projection",
-  });
-  return films;
+  try {
+    let films = await pb.collection("films").getFullList({
+      sort: "date_projection",
+    });
+    films = films.map((film) => {
+      film.img = pb.files.getURL(film, film.img);
+      return film;
+    });
+    return films;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function getActivitesByDate() {
-  const activites = await pb.collection("activites").getFullList({
-    sort: "date_projection",
-  });
-  return activites;
+  try {
+    let activites = await pb.collection("activites").getFullList({
+      sort: "date_projection",
+    });
+    activites = activites.map((activite) => {
+      activite.img = pb.files.getURL(activite, activite.img);
+      return activite;
+    });
+    return activites;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function getInvitesByName() {
-  const invites = await pb.collection("invites").getFullList({
-    sort: "nom",
-  });
-  return invites;
+  try {
+    let invites = await pb.collection("invites").getFullList({
+      sort: "nom",
+    });
+    invites = invites.map((invite) => {
+      invite.img = pb.files.getURL(invite, invite.img);
+      return invite;
+    });
+    return invites;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function getFilmById(id) {
@@ -43,4 +70,27 @@ export async function getActivitesByAnimateurId(animateurId) {
     sort: "date_projection",
   });
   return activites;
+}
+
+//Autres fonctions pour mon projets //
+
+export async function getTarifs() {
+  const tarifs = await pb.collection("tarifs").getFullList({
+    sort: "prix",
+  });
+  return tarifs;
+}
+
+export async function getTarifsMiniature() {
+  const minitarifs = await pb.collection("minitarifs").getFullList({
+    sort: "prix",
+  });
+  return minitarifs;
+}
+
+export async function getEquipe() {
+  const equipe = await pb.collection("equipe").getFullList({
+    sort: "nom",
+  });
+  return equipe;
 }
