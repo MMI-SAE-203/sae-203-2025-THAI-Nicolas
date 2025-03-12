@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getTarifs } from "../../backend/backend.mjs";
+import CardTarifs from "../components/CardTarifs.astro";
+const tarifs = await getTarifs();
+---
+
+<Layout title="Billeterie" description="Page de billeterie de Festiv'Halloween">
+  <h1>Billeterie</h1>
+  <div class="mx-8">
+    <p class="mb-4">
+      Bienvenue dans la billetterie de notre festival de films d'horreur !
+    </p>
+    <p class="mb-4">
+      Choisissez la formule qui correspond à votre niveau de courage et plongez
+      dans l'effroi avec nous.
+    </p>
+    <p class="mb-8">Voici les options disponibles :</p>
+
+    <ul class="flex flex-col justify-center items-center gap-10 mb-20">
+      {
+        tarifs.map((tarif) => (
+          <li>
+            <CardTarifs {...tarif} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

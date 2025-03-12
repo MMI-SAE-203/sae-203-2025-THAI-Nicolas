@@ -1,16 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import MiniCardTarifs from "../components/MiniCardTarifs.astro";
+import Spider from "../assets/icones/spider.webp";
+import Murderer from "../assets/icones/murderer.webp";
+import LogoIut from "../assets/icones/logo-iut.webp";
+import logoMmi from "../assets/icones/logo-mmi.webp";
 import { getTarifsMiniature } from "../../backend/backend.mjs";
 const minitarifs = await getTarifsMiniature();
 ---
 
-<Layout title="Accueil" description="Page d'accueil de Festiv'Halloween">
+<Layout
+  title="Accueil"
+  description="Page d'accueil de Festiv'Halloween "
+  footerMargin="mt-20"
+>
   <div>
     <h1 class="">Festiv'<span>Halloween</span></h1>
-    <p>29 au 31 octobre</p>
+    <p class="text-center">29 au 31 octobre</p>
     <h2>Passez un agréable moment de peur</h2>
-    <a href="">Découvrir</a>
+    <div class="flex justify-center items-center">
+      <a href="">Découvrir</a>
+    </div>
   </div>
 
   <div>
@@ -21,11 +31,7 @@ const minitarifs = await getTarifsMiniature();
       <div>
         <div>
           <span></span>
-          <img
-            src="/assets/icones/spider.webp"
-            alt="Araignée"
-            aria-hidden="true"
-          />
+          <img src={Spider.src} alt="Araignée" aria-hidden="true" />
         </div>
         <div>
           <p>
@@ -51,11 +57,7 @@ const minitarifs = await getTarifsMiniature();
           <a href="/reserver-un-film.html">Réserver</a>
         </div>
         <div>
-          <img
-            src="/assets/icones/murderer.webp"
-            alt="Tueur"
-            aria-hidden="true"
-          />
+          <img src={Murderer.src} alt="Tueur" aria-hidden="true" />
         </div>
       </div>
     </section>
@@ -66,17 +68,17 @@ const minitarifs = await getTarifsMiniature();
       <h2>Les films à la une</h2>
     </header>
 
-    <a href="/programme">
+    <a class="flex justify-center items-center" href="/programme">
       <img src="" alt="" />
       <p>Le Programme</p>
     </a>
   </section>
 
-  <section>
+  <section class="bg-sweetwhite text-black">
     <header>
       <h2>Les tarifs</h2>
     </header>
-    <ul>
+    <ul class="flex flex-col justify-center items-center gap-10 mb-20">
       {
         minitarifs.map((minitarif) => (
           <li>
@@ -85,12 +87,28 @@ const minitarifs = await getTarifsMiniature();
         ))
       }
     </ul>
-    <a href="">Billeterie</a>
+    <div class="flex justify-center items-center">
+      <a href="/billeterie" class="bg-purple px-8 py-3">Billeterie</a>
+    </div>
   </section>
 
-  <section>
+  <section class="bg-sweetwhite text-black">
     <header>
-      <h2></h2>
+      <h2>Nos partenaires</h2>
     </header>
+    <div class="flex flex-col justify-center gap-8 pt-8">
+      <a
+        href="https://www.iut-nfc.univ-fcomte.fr/b-u-t-metiers-du-multimedia-et-de-linternet/"
+      >
+        <img class="w-1/3 mx-auto" src={logoMmi.src} alt="Logo Mmi" />
+      </a>
+      <a href="https://www.iut-nfc.univ-fcomte.fr/">
+        <img
+          class="w-1/3 mx-auto"
+          src={LogoIut.src}
+          alt="Logo IUT Nord-Franche-Comté"
+        />
+      </a>
+    </div>
   </section>
 </Layout>

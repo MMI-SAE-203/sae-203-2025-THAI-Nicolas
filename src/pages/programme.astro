@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CardEvenements from "../components/CardEvenements.astro";
+import { getAllEvents } from "../../backend/backend.mjs";
+
+const evenements = await getAllEvents();
+---
+
+<Layout title="Programme" description="Page du programme de Festiv'Halloween">
+  <section>
+    <h1>Le Programme</h1>
+    <h2>Édition 2025</h2>
+    <p>Du 29 au 31 octobre</p>
+
+    <ul class="flex flex-col justify-center items-center gap-4">
+      {
+        evenements.map((evenement) => (
+          <li class="w-full mx-auto max-w-3xl">
+            <CardEvenements {...evenement} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

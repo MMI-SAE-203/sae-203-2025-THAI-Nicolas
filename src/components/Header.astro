@@ -3,38 +3,128 @@ import FestivalLogo from "/src/assets/icones/festival-logo.webp";
 import ShoppingCart from "/src/assets/icones/shopping-cart.svg";
 ---
 
-<header>
+<header
+  class="bg-black flex justify-between items-center py-6 px-8 relative z-50"
+>
   <div>
     <a href="/index.html" aria-label="Retourner à l'accueil">
-      <img src={FestivalLogo.src} alt="" />
+      <img class="w-20" src={FestivalLogo.src} alt="Logo du festival" />
     </a>
   </div>
 
-  <div>
+  <div class="flex items-center gap-8">
     <a href="/panier.html" aria-label="Voir le panier">
       <img src={ShoppingCart.src} alt="Panier" />
     </a>
 
     <button
-      class="menu-btn"
+      id="menuToggle"
+      class="menu-btn relative z-50"
       aria-label="Accéder au Menu"
       aria-controls="mainNav"
       aria-expanded="false"
     >
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="menu-btn__bar"></span>
+      <span class="menu-btn__bar"></span>
+      <span class="menu-btn__bar"></span>
     </button>
-    <nav class="menu" id="mainNav" aria-hidden="true">
-      <ul>
-        <li><a href="/">LE FESTIVAL</a></li>
-        <li><a href="/">PROGRAMME</a></li>
-        <li><a href="/">LES ACTIVITÉS</a></li>
-        <li><a href="/">LES FILMS</a></li>
-        <li><a href="">NOS INVITÉS</a></li>
-        <li><a href="">INFOS PRATIQUES</a></li>
-        <li><a href="">CONTACT</a></li>
+
+    <nav
+      id="mainNav"
+      class="fixed inset-0 bg-[url('/src/assets/img/fond-menu-image.webp')] bg-cover flex flex-col justify-center items-center translate-x-full transition-transform duration-300 z-40"
+      aria-hidden="true"
+    >
+      <ul class="space-y-16 mr-20">
+        <li>
+          <a
+            href="/festival"
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >LE FESTIVAL</a
+          >
+        </li>
+        <li>
+          <a
+            href="/programme"
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >PROGRAMME</a
+          >
+        </li>
+        <li>
+          <a
+            href="/activites"
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >LES ACTIVITÉS</a
+          >
+        </li>
+        <li>
+          <a
+            href="/films"
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >LES FILMS</a
+          >
+        </li>
+        <li>
+          <a
+            href="/invites"
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >NOS INVITÉS</a
+          >
+        </li>
+        <li>
+          <a
+            href=""
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >INFOS PRATIQUES</a
+          >
+        </li>
+        <li>
+          <a
+            href=""
+            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
+            >CONTACT</a
+          >
+        </li>
       </ul>
     </nav>
   </div>
 </header>
+
+<script>
+  // Définissons une variable globale pour suivre si le script a été exécuté
+  let initialized = false;
+
+  function setupMenu() {
+    // Éviter les doubles initialisations
+    if (initialized) return;
+    initialized = true;
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const menu = document.getElementById("mainNav");
+
+    if (menuBtn && menu) {
+      menuBtn.addEventListener("click", () => {
+        const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menu.classList.toggle("translate-x-full");
+        menuBtn.setAttribute("aria-expanded", !isExpanded);
+        menu.setAttribute("aria-hidden", isExpanded);
+        document.body.classList.toggle("noscroll", !isExpanded);
+      });
+    }
+  }
+
+  // Exécuter au chargement initial
+  setupMenu();
+
+  // Réinitialiser la variable d'initialisation à chaque transition
+  document.addEventListener("astro:after-swap", () => {
+    initialized = false;
+  });
+
+  // Réexécuter après chaque transition de page
+  document.addEventListener("astro:page-load", setupMenu);
+
+  // Nettoyer les classes noscroll quand on quitte une page
+  document.addEventListener("astro:before-swap", () => {
+    document.body.classList.remove("noscroll");
+  });
+</script>

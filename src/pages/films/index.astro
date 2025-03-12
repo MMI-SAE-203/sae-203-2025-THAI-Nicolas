@@ -1,24 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import SearchIcon from "../../assets/icones/search-icon.svg";
 import { getFilmsByDate } from "../../../backend/backend.mjs";
 const films = await getFilmsByDate();
 ---
 
-<Layout title="Films" description="Page des films de Festiv'Halloween">
-  <section>
+<Layout
+  title="Films"
+  description="Page des films de Festiv'Halloween"
+  footerMargin="pt-20"
+>
+  <section class="px-12">
     <header>
       <h1>Les films du Festival</h1>
 
-      <form action="/search" method="get" role="search">
+      <form
+        class="flex gap-6 justify-center items-center py-1.5 border rounded-4xl w-2/3 mx-auto mb-10"
+        action="/search"
+        method="get"
+        role="search"
+      >
         <button type="submit">
           <img
-            src="/assets/icones/search-icon.svg"
+            class="cursor-pointer"
+            src={SearchIcon.src}
             alt="Loupe de recherche"
             aria-label="Rechercher un film"
           />
         </button>
         <div>
           <input
+            class="text-xl"
             type="text"
             placeholder="Rechercher un film..."
             aria-label="Rechercher un film"
@@ -27,14 +39,29 @@ const films = await getFilmsByDate();
       </form>
     </header>
 
-    <ul>
+    <ul class="grid grid-cols-3 justify-center items-center gap-5 mx-auto">
       {
         films.map((film) => (
-          <li>
-            <img src={film.img} alt="Image de la couverture" />
+          <li class="flex justify-center items-center">
+            <a href={`/films/${film.id}`}>
+              <img src={film.img} alt="Image de la couverture" />
+            </a>
           </li>
         ))
       }
     </ul>
+    <div class="mt-10">
+      <div class="flex justify-end items-center gap-4">
+        <a href="" aria-label="Aller à la page 1">1</a>
+        <a href="" aria-label="Aller à la page 2">2</a>
+        <span>...</span>
+        <a href="" aria-label="Aller à la page 3">4</a>
+      </div>
+
+      <p class="text-center mt-10">
+        Cette galerie répertorie tous les films avec lesquelles nous avons un
+        droit de diffusion
+      </p>
+    </div>
   </section>
 </Layout>

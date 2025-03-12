@@ -12,22 +12,75 @@
 }
 @layer base {
   body {
-    @apply font-raleway;
+    @apply font-raleway text-base bg-sweetwhite;
   }
   h1 {
-    @apply font-cinzel text-4xl;
+    @apply font-cinzel text-4xl py-8 text-center;
   }
   h2 {
-    @apply font-cinzel text-2xl;
+    @apply font-cinzel text-2xl text-center py-10;
   }
   h3 {
     @apply font-montserrat text-xl;
   }
   section {
-    @apply bg-black text-sweetwhite;
+    @apply bg-black text-sweetwhite px-10;
+  }
+  ul {
+    @apply list-none;
+  }
+  a {
+    @apply text-sweetwhite  font-montserrat uppercase tracking-widest font-bold rounded-sm;
   }
 }
 
 body.noscroll {
   overflow: hidden;
+}
+
+.menu-btn {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.menu-btn__bar,
+.menu-btn__bar::before,
+.menu-btn__bar::after {
+  content: "";
+  background: white;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  transition: all 0.4s ease-in-out;
+}
+
+.menu-btn__bar::before {
+  top: -10px;
+}
+
+.menu-btn__bar::after {
+  top: 10px;
+}
+
+.menu-btn[aria-expanded="true"] .menu-btn__bar,
+.menu-btn[aria-expanded="true"] .menu-btn__bar::before,
+.menu-btn[aria-expanded="true"] .menu-btn__bar::after {
+  transform: rotate(135deg);
+  background: white;
+}
+
+.menu-btn[aria-expanded="true"] .menu-btn__bar::before,
+.menu-btn[aria-expanded="true"] .menu-btn__bar::after {
+  transform: rotate(90deg);
+  top: 0;
 }

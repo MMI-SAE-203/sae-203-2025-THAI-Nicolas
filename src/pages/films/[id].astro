@@ -1,0 +1,105 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getFilmById } from "../../../backend/backend.mjs";
+const { id } = Astro.params;
+const film = await getFilmById(id);
+
+if (!film) {
+  return Astro.redirect("/films");
+}
+---
+
+<Layout footerMargin="pt-20">
+  <section>
+    <header>
+      <h1 class="text-white">{film.titre}</h1>
+    </header>
+
+    <div class="flex flex-col gap-8">
+      <div class="flex justify-center items-center mx-auto">
+        <img src={film.img} alt="Image de la couverture" />
+      </div>
+      <div class="flex flex-col justify-center mx-auto gap-2">
+        <p class="font-bold text-start">
+          SORTIE : <span class="font-normal">{film.date_sortie}</span>
+        </p>
+        <p class="font-bold text-start">
+          RÉALISATEUR : <span class="font-normal">{film.realisateur}</span>
+        </p>
+        <p class="font-bold text-start">
+          LIMITE D'AGE : <span class="font-normal">-{film.limite_age} ans</span>
+        </p>
+        <p class="font-bold text-start">
+          PRODUCTION : <span class="font-normal">{film.production}</span>
+        </p>
+        <p class="font-bold text-start">
+          DURÉE : <span class="font-normal">{film.duree} min</span>
+        </p>
+        <p class="font-bold text-start">
+          GENRE : <span
+            class="font-normal text-sm bg-sweetwhite text-black rounded-full px-2 py-0.5"
+            >{film.genre[0]}</span
+          >
+          <span
+            class="font-normal text-sm bg-purple text-sweetwhite rounded-full px-2 py-0.5"
+            >{film.genre[1]}</span
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Synopsys</h2>
+    </header>
+    <div
+      class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+      set:html={film.synopsis}
+    />
+  </section>
+
+  <section>
+    <header>
+      <h2>Bande-Annonce</h2>
+    </header>
+  </section>
+
+  <section>
+    <header>
+      <h2>Biographie du réalisateur</h2>
+    </header>
+    <div
+      class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+      set:html={film.bio_realisateur}
+    />
+  </section>
+
+  {
+    film.expand?.invite_associes && (
+      <section>
+        <header>
+          <h2>Invités Associé</h2>
+        </header>
+        <a
+          class="flex flex-col justify-center items-center"
+          href={`/invites/${film.expand.invite_associes.id}`}
+        >
+          <img
+            class="w-50"
+            src={film.expand.invite_associes.img}
+            alt={`Photo de ${film.expand.invite_associes.nom}`}
+          />
+
+          <h3 class="text-sm mt-2">
+            {film.expand.invite_associes.prenom}{" "}
+            {film.expand.invite_associes.nom}
+          </h3>
+          <p class="lowercase italic font-normal first-letter:uppercase">
+            {film.expand.invite_associes.metier}
+          </p>
+        </a>
+      </section>
+    )
+  }
+</Layout>

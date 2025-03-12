@@ -1,27 +1,37 @@
-<footer>
-  <ul>
-    <li>
-      <a href="/contact.html">CONTACT</a>
+---
+import InstagramIcon from "../assets/icones/instagram-icon.svg";
+import FacebookIcon from "../assets/icones/facebook-icon.svg";
+import LinkedinIcon from "../assets/icones/linkedin-icon.svg";
+let { footerMargin = "mt-20" } = Astro.props;
+---
+
+<footer class=`bg-black text-sweetwhite ${footerMargin}`>
+  <ul class="flex flex-col justify-center items-center gap-8 py-8">
+    <li class="border-b border-sweetwhite pb-6 w-full text-center">
+      <a class="font-cinzel font-normal" href="/contact.html">CONTACT</a>
     </li>
-    <li>
-      <a href="/panier.html">PANIER</a>
+    <li class="border-b border-sweetwhite pb-6 w-full text-center">
+      <a class="font-cinzel font-normal" href="/">INFOS LÉGALES</a>
     </li>
-    <li>
-      <a href="/infos-pratiques.html">INFOS PRATIQUES</a>
+    <li class="border-b border-sweetwhite pb-6 w-full text-center">
+      <a class="font-cinzel font-normal" href="/infos-pratiques.html"
+        >INFOS PRATIQUES</a
+      >
     </li>
-    <li>
-      <a href="/reserver-un-film.html">RÉSERVATIONS</a>
+    <li class="border-b border-sweetwhite pb-6 w-full text-center">
+      <a class="font-cinzel font-normal" href="/">CONDITIONS GÉNÉRALES</a>
     </li>
   </ul>
 
-  <ul>
+  <ul class="flex justify-center items-center gap-8 py-4">
     <li>
       <a
         target="_blank"
         href="https://www.linkedin.com/school/mmimontbeliard/posts/?feedView=all"
       >
         <img
-          src="/assets/icones/linkedin-icon.svg"
+          class="w-9"
+          src={LinkedinIcon.src}
           alt="Icone Linkedin"
           aria-label="Nous suivre sur Linkedin"
         />
@@ -30,7 +40,8 @@
     <li>
       <a target="_blank" href="https://www.instagram.com/mmi_montbeliard/">
         <img
-          src="/assets/icones/instagram-icon.svg"
+          class="w-8"
+          src={InstagramIcon.src}
           alt="Icone Instagram"
           aria-label="Nous suivre sur Instagram"
         />
@@ -42,14 +53,15 @@
         href="https://www.facebook.com/mmimontbeliard/?locale=fr_FR"
       >
         <img
-          src="/assets/icones/facebook-icon.svg"
+          class="w-9"
+          src={FacebookIcon.src}
           alt="Icone Facebook"
           aria-label="Nous suivre sur Facebok"
         />
       </a>
     </li>
   </ul>
-  <p>
+  <p class="text-center py-6 w-2/3 mx-auto text-sm font-thin">
     Ce site est un projet réalisé en 2024 dans le cadre d'un exercice
     pédagogique au département MMi de Montbéliard
   </p>

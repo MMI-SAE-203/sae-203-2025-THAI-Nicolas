@@ -2,8 +2,22 @@
 const { ...invite } = Astro.props;
 ---
 
-<div>
-  <img src={invite.img} alt=`Photo de ${invite.prenom} ${invite.nom}` />
-  <h3>{invite.prenom} {invite.nom}</h3>
-  <p>{invite.metier}</p>
-</div>
+<a
+  href={`/invites/${invite.id}`}
+  class="flex justify-center items-center flex-col p-4 mx-auto"
+>
+  <img
+    class="w-3/4 w-[30]vw h-auto mx-auto"
+    src={invite.img}
+    alt=`Photo de ${invite.prenom} ${invite.nom}`
+  />
+  <h3 class="font-raleway font-bold text-base text-center tracking-normal mt-2">
+    {invite.prenom}
+    <span class="uppercase">{invite.nom}</span>
+  </h3>
+  <p
+    class="italic text-xs font-normal lowercase first-letter:uppercase tracking-normal"
+  >
+    {invite.metier}
+  </p>
+</a>

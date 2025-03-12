@@ -2,13 +2,27 @@
 const { ...minitarif } = Astro.props;
 ---
 
-<div>
-  <div>
-    <h3>{minitarif.titre}</h3>
+<div
+  class="flex flex-col justify-center items-center border border-black border-solid rounded-tl-2xl rounded-tr-2xl rounded-br-lg rounded-bl-lg mx-auto w-90"
+>
+  <div
+    class="bg-black text-sweetwhite rounded-tl-2xl rounded-tr-2xl w-full h-20 flex items-center"
+  >
+    <h3 class="text-center font-creepster w-full text-4xl">
+      {minitarif.titre}
+    </h3>
   </div>
-  <div>
-    <h3>{minitarif.prix}€/{minitarif.jour} jour</h3>
-    <p>{minitarif.description}</p>
-    <a href="">Achetez</a>
+  <div class="flex flex-col items-center w-full h-70 justify-center">
+    <h3 class="font-montserrat font-bold text-2xl">
+      {minitarif.prix}€/{minitarif.jour} jour
+    </h3>
+    <p class="text-lg font-montserrat text-center py-4 w-3/4">
+      {minitarif.description}
+    </p>
+    <a
+      href=""
+      class="text-center bg-orange px-8 py-2.5 rounded-4xl text-lg my-2"
+      >Acheter</a
+    >
   </div>
 </div>

@@ -5,16 +5,24 @@ const invites = await getInvitesByName();
 import CardInvites from "../../components/CardInvites.astro";
 ---
 
-<Layout title="Invités" description="Page des invités de Festiv'Halloween">
-  <h1>Les invités du Festival</h1>
+<Layout
+  title="Invités"
+  description="Page des invités de Festiv'Halloween"
+  footerMargin="pt-20"
+>
+  <section>
+    <header>
+      <h1>Les invités du Festival</h1>
+    </header>
 
-  <ul>
-    {
-      invites.map((invite) => (
-        <li>
-          <CardInvites {...invite} />
-        </li>
-      ))
-    }
-  </ul>
+    <ul class="grid grid-cols-2 gap-1 justify-center items-center mx-auto">
+      {
+        invites.map((invite) => (
+          <li class="flex justyfy-center items-center">
+            <CardInvites {...invite} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>
