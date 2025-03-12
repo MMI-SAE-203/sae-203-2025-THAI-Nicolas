@@ -1,18 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import DownloadIcon from "../assets/icones/download.svg"
 import CardEvenements from "../components/CardEvenements.astro";
 import { getAllEvents } from "../../backend/backend.mjs";
 
 const evenements = await getAllEvents();
 ---
 
-<Layout title="Programme" description="Page du programme de Festiv'Halloween">
+<Layout title="Programme" description="Page du programme de Festiv'Halloween" footerMargin="pt-20">
   <section>
-    <h1>Le Programme</h1>
-    <h2>Édition 2025</h2>
-    <p>Du 29 au 31 octobre</p>
+    <h1 class=" m-0 p-0 pt-8">Le Programme</h1>
+    <h2 class="m-0 p-0 text-orange font-montserrat uppercase font-bold text-2xl" >Édition 2025</h2>
+    <p class="text-center uppercase font-montserrat py-6 pb-20 font-bold underline text-lg">Du 29 au 31 octobre</p>
 
-    <ul class="flex flex-col justify-center items-center gap-4">
+    <ul class="flex flex-col justify-center items-center gap-8">
       {
         evenements.map((evenement) => (
           <li class="w-full mx-auto max-w-3xl">
@@ -21,5 +22,10 @@ const evenements = await getAllEvents();
         ))
       }
     </ul>
+    <p class="text-center font-bold text-2xl py-6 pt-30 border-b border-solid">Télécharger le programme 2025</p>
+    <div class="flex justify-center items-center gap-4 py-8 border-b border-solid">
+      <img src={DownloadIcon.src} alt="">
+      <a class="lowercase underline text-lg" href="/">programmation_2025.pdf</a>
+    </div>
   </section>
 </Layout>
