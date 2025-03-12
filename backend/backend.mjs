@@ -69,7 +69,18 @@ export async function getFilmById(id) {
 }
 
 export async function getActivitesById(id) {
-  const activite = await pb.collection("activites").getOne(id);
+  const activite = await pb.collection("activites").getOne(id, {
+    expand: "animateur",
+  });
+  activite.img = pb.files.getURL(activite, activite.img);
+
+  if (activite.expand?.animateur) {
+    activite.expand.animateur.img = pb.files.getURL(
+      activite.expand.animateur,
+      activite.expand.animateur.img
+    );
+  }
+
   return activite;
 }
 

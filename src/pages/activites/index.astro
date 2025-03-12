@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import CardActivites from "../../components/CardActivites.astro" ;
+import { getActivitesByDate } from "../../../backend/backend.mjs";
+const activities = await getActivitesByDate();
+---
+
+<Layout title="Activités" description="Page des activités de Festiv'Halloween" footerMargin="pt-20">
+  <section>
+   <header>
+        <h1>Les activités</h1>
+   </header>
+   <ul class="flex flex-col justify-center items-center gap-8">
+        {
+        activities.map((activite) => (
+            <li>
+            <CardActivites {...activite} />
+            </li>
+        ))
+        }
+   </ul>
+
+  </section>
+    
+</Layout>

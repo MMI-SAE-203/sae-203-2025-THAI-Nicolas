@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getActivitesById } from "../../../backend/backend.mjs"
+const { id } = Astro.params;
+const activite = await getActivitesById(id);
+
+if (!activite) {
+    return Astro.redirect("/activites")
+}
+---
+
+<Layout>
+    <h1>{activite.titre}</h1>
+</Layout>
