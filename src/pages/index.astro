@@ -8,6 +8,7 @@ import logoMmi from "../assets/icones/logo-mmi.webp";
 import { getTarifsMiniature, getFilmsByDate } from "../../backend/backend.mjs";
 import imgHero from '../assets/img/image-festival.webp'
 import LayoutWithHero from "../layouts/LayoutWithHero.astro";
+import ImagePB from "../components/ImagePB.astro";
 const minitarifs = await getTarifsMiniature();
 const films = await getFilmsByDate();
 
@@ -117,10 +118,11 @@ const alt = "Image du festiv'Halloween"
     {films.slice(0,8).map((film) => (
       <li class="flex justify-center">
         <a href={`/films/${film.id}`} class="block w-full hover:opacity-80 transition-opacity">
-          <img 
+          <ImagePB 
             src={film.img} 
-            alt="Image de la couverture" 
-            class="w-full h-auto object-cover rounded-md shadow-md aspect-[2/3]"
+            alt={`Affiche du film ${film.titre || "à la une"}`} 
+            classImg="w-full max-w-[200px] mx-auto h-auto object-cover rounded-md shadow-md aspect-[2/3]"
+            pictureAttributes={{ loading: "lazy" }}
           />
         </a>
       </li>

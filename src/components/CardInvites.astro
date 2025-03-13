@@ -1,4 +1,5 @@
 ---
+import ImagePB from "./ImagePB.astro";
 const { ...invite } = Astro.props;
 ---
 
@@ -6,10 +7,11 @@ const { ...invite } = Astro.props;
   href={`/invites/${invite.id}`}
   class="flex justify-center items-center flex-col p-4 mx-auto"
 >
-  <img
-    class="w-3/4 w-[30]vw h-auto mx-auto"
-    src={invite.img}
-    alt=`Photo de ${invite.prenom} ${invite.nom}`
+  <ImagePB 
+    src={invite.img} 
+    alt={`Photo de ${invite.prenom} ${invite.nom}`}
+    classImg="w-3/4 w-[30vw] h-auto mx-auto"
+    pictureAttributes={{ loading: "lazy" }}
   />
   <h3 class="font-raleway font-bold text-base text-center tracking-normal mt-2">
     {invite.prenom}

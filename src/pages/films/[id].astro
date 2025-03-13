@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getFilmById } from "../../../backend/backend.mjs";
+import ImagePB from "../../components/ImagePB.astro";
 const { id } = Astro.params;
 const film = await getFilmById(id);
 
@@ -22,10 +23,11 @@ if (!film) {
       <div class="w-full lg:w-96 flex flex-col gap-6">
         
         <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
-          <img 
+          <ImagePB 
             src={film.img} 
             alt={`Affiche du film ${film.titre}`} 
-            class="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover"
+            classImg="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover"
+            pictureAttributes={{ loading: "lazy" }}
           />
         </div>
         

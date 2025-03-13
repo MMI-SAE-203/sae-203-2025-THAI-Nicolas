@@ -1,6 +1,7 @@
 ---
 const { ...evenement } = Astro.props;
 import { formatDate } from "../../backend/backend.mjs";
+import ImagePB from "./ImagePB.astro";
 const formatDeLaDate = formatDate(evenement.date);
 
 let targetRoute = `/`; 
@@ -18,10 +19,11 @@ if (evenement.type === "Film" && evenement.id_original) {
   href={targetRoute}
 >
   <div class="w-full sm:w-2/5">
-    <img
-      class="w-full h-48 sm:h-full object-cover"
+    <ImagePB
       src={evenement.img}
       alt={`Image de l'événement ${evenement.titre}`}
+      classImg="w-full h-48 sm:h-full object-cover"
+      pictureAttributes={{ loading: "lazy" }}
     />
   </div>
 

@@ -6,6 +6,7 @@ const activite = await getActivitesById(id);
 
 import { formatDate, getAllEvents } from "../../../backend/backend.mjs";
 import CardEvenements from "../../components/CardEvenements.astro";
+import ImagePB from "../../components/ImagePB.astro";
 const formatDeLaDate = formatDate(activite.date_projection);
 
 const allEvents = await getAllEvents();
@@ -31,10 +32,11 @@ if (!activite) {
       <div class="w-full lg:w-96 flex flex-col gap-6">
         
         <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
-          <img 
+          <ImagePB 
             src={activite.img} 
             alt="Image de l'activité"
-            class="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover"
+            classImg="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover"
+            pictureAttributes={{ loading: "lazy" }}
           />
         </div>
         
