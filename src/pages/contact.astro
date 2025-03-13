@@ -11,7 +11,6 @@ import {addFormMessage} from "../../backend/backend.mjs";
 let message = "";
 let success = false;
 
-// Vérifier s'il y a un message dans l'URL
 const urlParams = new URL(Astro.request.url).searchParams;
 const urlMessage = urlParams.get('message');
 const urlSuccess = urlParams.get('success') === 'true';
@@ -26,13 +25,11 @@ if (Astro.request.method === "POST") {
         const formData = await Astro.request.formData();
         const response = await addFormMessage(formData);
         
-        // Rediriger vers la même page avec le message en paramètre
         return Astro.redirect(`/contact?message=${encodeURIComponent(response.message)}&success=${response.success}`);
     } catch (error) {
         console.error("Erreur lors de l'envoi du formulaire:", error);
         const errorMessage = "Une erreur s'est produite lors de l'envoi du message.";
         
-        // Rediriger avec message d'erreur
         return Astro.redirect(`/contact?message=${encodeURIComponent(errorMessage)}&success=false`);
     }
 }

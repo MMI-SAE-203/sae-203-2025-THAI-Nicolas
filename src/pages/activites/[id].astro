@@ -8,11 +8,10 @@ import { formatDate, getAllEvents } from "../../../backend/backend.mjs";
 import CardEvenements from "../../components/CardEvenements.astro";
 const formatDeLaDate = formatDate(activite.date_projection);
 
-// Récupérer tous les événements et filtrer uniquement ceux de type "Activite"
 const allEvents = await getAllEvents();
 const autresActivites = allEvents
-  .filter(event => event.type === "Activite" && event.id_original !== id) // Exclure l'activité actuelle
-  .slice(0, 3); // Optionnel: limiter à 3 activités pour ne pas surcharger la page
+  .filter(event => event.type === "Activite" && event.id_original !== id) 
+  .slice(0, 3); 
 
 if (!activite) {
     return Astro.redirect("/activites")
@@ -21,16 +20,16 @@ if (!activite) {
 
 <Layout footerMargin="pt-20">
   <div class="container mx-auto px-4 py-8">
-    <!-- Titre centré en haut -->
+    
     <header class="mb-8 md:mb-12 text-center">
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-cinzel">{activite.titre}</h1>
     </header>
     
-    <!-- Section principale avec image et informations -->
+    
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-10">
-      <!-- Colonne gauche : Image + informations -->
+      
       <div class="w-full lg:w-96 flex flex-col gap-6">
-        <!-- Image de l'activité -->
+        
         <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
           <img 
             src={activite.img} 
@@ -39,7 +38,7 @@ if (!activite) {
           />
         </div>
         
-        <!-- Informations sur l'activité -->
+        
         <div class="flex flex-col gap-3 mx-auto lg:mx-0 max-w-md">
           <p class="font-bold text-start">
               DATE : <span class="font-normal">{formatDeLaDate}</span>
@@ -59,7 +58,7 @@ if (!activite) {
         </div>
       </div>
       
-      <!-- Colonne droite : Description -->
+      
       <div class="w-full lg:w-3/5">
         <div class="mb-6">
           <h2 class="text-2xl font-bold mb-4">Description de l'activité</h2>
@@ -71,7 +70,7 @@ if (!activite) {
       </div>
     </div>
   
-    <!-- Section programme -->
+    
     <section class="mt-12 bg-sweetwhite text-black p-4 rounded-md">
       <header class="mb-4">
         <h2 class="text-2xl font-bold">Au Programme</h2>
@@ -82,7 +81,7 @@ if (!activite) {
       />
     </section>
 
-    <!-- Section autres activités -->
+   
     <section class="mt-12 bg-sweetwhite text-black p-4 rounded-md">
       <header class="mb-6">
         <h2 class="text-2xl font-bold text-center">Autres activités</h2>

@@ -14,13 +14,11 @@ const baseUrl = "https://www.example.com";
 const pageUrl = `${baseUrl}${Astro.url.pathname}`;
 const siteName = "Festiv'Halloween";
 
-// Import des polices @fontsource
 import "@fontsource/montserrat";
 import "@fontsource/cinzel";
 import "@fontsource/raleway";
 import "@fontsource/creepster";
 
-// Import du fichier CSS pour les règles de polices
 import "../styles/global.css";
 ---
 
@@ -51,7 +49,6 @@ import "../styles/global.css";
 
     <link rel="canonical" href={pageUrl} />
 
-    <!-- Les liens preconnect pour Google Fonts ne sont plus nécessaires avec @fontsource -->
     <link rel="dns-prefetch" href={pageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

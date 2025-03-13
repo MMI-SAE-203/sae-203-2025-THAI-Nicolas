@@ -6,9 +6,7 @@ import { getInviteById, getAllEvents } from "../../../backend/backend.mjs";
 const { id } = Astro.params;
 const invite = await getInviteById(id);
 
-// Récupérer les événements associés à cet invité
 const allEvents = await getAllEvents();
-// Filtrer les événements où l'invité est associé
 const evenementsAssocies = allEvents.filter(
   (event) => event.expand?.invite_associes?.id === id
 );

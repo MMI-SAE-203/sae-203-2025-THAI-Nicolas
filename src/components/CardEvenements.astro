@@ -3,7 +3,7 @@ const { ...evenement } = Astro.props;
 import { formatDate } from "../../backend/backend.mjs";
 const formatDeLaDate = formatDate(evenement.date);
 
-let targetRoute = `/`; // default route
+let targetRoute = `/`; 
 
 if (evenement.type === "Film" && evenement.id_original) {
   targetRoute = `/films/${evenement.id_original}`;

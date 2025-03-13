@@ -3,6 +3,8 @@ import Layout from "./Layout.astro";
 import { Picture } from 'astro:assets';
 const { title, description, subTitle, src, alt, paragraphe, classContent = "" } = Astro.props;
 ---
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
 <Layout title={title} description={description} footerMargin="mt-20">
   <div class="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] overflow-hidden">
     <Picture 
@@ -52,4 +54,5 @@ const { title, description, subTitle, src, alt, paragraphe, classContent = "" } 
     height: 100%;
     object-fit: cover;
   }
+  
 </style>

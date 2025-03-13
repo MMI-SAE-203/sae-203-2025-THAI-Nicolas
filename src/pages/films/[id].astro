@@ -11,16 +11,16 @@ if (!film) {
 
 <Layout footerMargin="pt-20">
   <div class="container mx-auto px-4 py-8">
-    <!-- Titre centré en haut -->
+   
     <header class="mb-8 md:mb-12 text-center">
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-cinzel ">{film.titre}</h1>
     </header>
     
-    <!-- Section principale avec affiche et informations -->
+    
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-10">
-      <!-- Colonne gauche : Affiche + informations -->
+      
       <div class="w-full lg:w-96 flex flex-col gap-6">
-        <!-- Affiche du film -->
+        
         <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
           <img 
             src={film.img} 
@@ -29,7 +29,7 @@ if (!film) {
           />
         </div>
         
-        <!-- Informations sur le film -->
+        
         <div class="flex flex-col gap-3 mx-auto lg:mx-0 max-w-md">
           <p class="font-bold text-start">
             SORTIE : <span class="font-normal">{film.date_sortie}</span>
@@ -56,7 +56,7 @@ if (!film) {
         </div>
       </div>
       
-      <!-- Colonne droite : Synopsis -->
+      
       <div class="w-full lg:w-3/5">
         <div class="mb-6">
           <h2 class="text-2xl font-bold mb-4">Synopsis</h2>
@@ -68,7 +68,7 @@ if (!film) {
       </div>
     </div>
   
-    <!-- Sections inchangées -->
+    
     <section class="mt-12 bg-sweetwhite text-black">
       <header class="mb-4">
         <h2 class="text-2xl font-bold">Bande-Annonce</h2>
