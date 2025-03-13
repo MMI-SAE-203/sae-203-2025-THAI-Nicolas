@@ -10,15 +10,20 @@ import CardInvites from "../../components/CardInvites.astro";
   description="Page des invités de Festiv'Halloween"
   footerMargin="pt-20"
 >
-  <section>
-    <header>
-      <h1>Les invités du Festival</h1>
+  <section class="mx-auto px-4 md:px-8">
+    <header class="mb-8 md:mb-12 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold font-cinzel tracking-wide">
+        Les invités du Festival
+      </h1>
+      <p class="mt-4 text-gray-600 italic">
+        Découvrez les personnalités qui seront présentes lors du festival
+      </p>
     </header>
 
-    <ul class="grid grid-cols-2 gap-1 justify-center items-center mx-auto">
+    <ul class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 justify-items-center max-w-5xl mx-auto">
       {
         invites.map((invite) => (
-          <li class="flex justyfy-center items-center">
+          <li class="w-full max-w-lg">
             <CardInvites {...invite} />
           </li>
         ))
@@ -26,3 +31,4 @@ import CardInvites from "../../components/CardInvites.astro";
     </ul>
   </section>
 </Layout>
+

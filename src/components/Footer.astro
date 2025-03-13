@@ -2,67 +2,124 @@
 import InstagramIcon from "../assets/icones/instagram-icon.svg";
 import FacebookIcon from "../assets/icones/facebook-icon.svg";
 import LinkedinIcon from "../assets/icones/linkedin-icon.svg";
-let { footerMargin = "mt-20" } = Astro.props;
+import FestivalLogo from "/src/assets/icones/festival-logo.webp";
+let { footerMargin = "mt-10" } = Astro.props;
 ---
 
-<footer class=`bg-black text-sweetwhite ${footerMargin}`>
-  <ul class="flex flex-col justify-center items-center gap-8 py-8">
-    <li class="border-b border-sweetwhite pb-6 w-full text-center">
-      <a class="font-cinzel font-normal" href="/contact.html">CONTACT</a>
-    </li>
-    <li class="border-b border-sweetwhite pb-6 w-full text-center">
-      <a class="font-cinzel font-normal" href="/">INFOS LÉGALES</a>
-    </li>
-    <li class="border-b border-sweetwhite pb-6 w-full text-center">
-      <a class="font-cinzel font-normal" href="/infos-pratiques.html"
-        >INFOS PRATIQUES</a
-      >
-    </li>
-    <li class="border-b border-sweetwhite pb-6 w-full text-center">
-      <a class="font-cinzel font-normal" href="/">CONDITIONS GÉNÉRALES</a>
-    </li>
-  </ul>
+<footer class={`bg-black text-sweetwhite ${footerMargin} py-8`}>
+  <div class="container mx-auto px-4">
+    <div class="lg:hidden">
+      <div class="mb-6">
+        <h2 class="font-cinzel font-bold text-lg mb-3 text-orange-500 text-center">Navigation</h2>
+        <ul class="flex flex-col items-center gap-2">
+          <li><a href="/festival" class="hover:text-orange-400 transition-colors">Le Festival</a></li>
+          <li><a href="/programme" class="hover:text-orange-400 transition-colors">Programme</a></li>
+          <li><a href="/billeterie" class="hover:text-orange-400 transition-colors">Billetterie</a></li>
+          <li><a href="/films" class="hover:text-orange-400 transition-colors">Les Films</a></li>
+          <li><a href="/invites" class="hover:text-orange-400 transition-colors">Les Invités</a></li>
+        </ul>
+      </div>
 
-  <ul class="flex justify-center items-center gap-8 py-4">
-    <li>
-      <a
-        target="_blank"
-        href="https://www.linkedin.com/school/mmimontbeliard/posts/?feedView=all"
-      >
-        <img
-          class="w-9"
-          src={LinkedinIcon.src}
-          alt="Icone Linkedin"
-          aria-label="Nous suivre sur Linkedin"
-        />
-      </a>
-    </li>
-    <li>
-      <a target="_blank" href="https://www.instagram.com/mmi_montbeliard/">
-        <img
-          class="w-8"
-          src={InstagramIcon.src}
-          alt="Icone Instagram"
-          aria-label="Nous suivre sur Instagram"
-        />
-      </a>
-    </li>
-    <li>
-      <a
-        target="_blank"
-        href="https://www.facebook.com/mmimontbeliard/?locale=fr_FR"
-      >
-        <img
-          class="w-9"
-          src={FacebookIcon.src}
-          alt="Icone Facebook"
-          aria-label="Nous suivre sur Facebok"
-        />
-      </a>
-    </li>
-  </ul>
-  <p class="text-center py-6 w-2/3 mx-auto text-sm font-thin">
-    Ce site est un projet réalisé en 2024 dans le cadre d'un exercice
-    pédagogique au département MMi de Montbéliard
-  </p>
+      <div class="mb-6">
+        <h2 class="font-cinzel font-bold text-lg mb-3 text-orange-500 text-center">Infos Légales</h2>
+        <ul class="flex flex-col items-center gap-2">
+          <li><a href="/confidentialite" class="hover:text-orange-400 transition-colors">Confidentialité</a></li>
+          <li><a href="/mentions-legales" class="hover:text-orange-400 transition-colors">Mentions légales</a></li>
+          <li><a href="/cookies" class="hover:text-orange-400 transition-colors">Cookies</a></li>
+          <li><a href="/cgv" class="hover:text-orange-400 transition-colors">CGV</a></li>
+          <li><a href="/cgu" class="hover:text-orange-400 transition-colors">CGU</a></li>
+        </ul>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="font-cinzel font-bold text-lg mb-3 text-orange-500 text-center">Contact</h2>
+        <ul class="flex flex-col items-center gap-2">
+          <li><a href="/contact" class="hover:text-orange-400 transition-colors">Nous contacter</a></li>
+          <li><a href="/reservation" class="hover:text-orange-400 transition-colors">Réserver un film</a></li>
+          <li><a href="/infos-pratiques" class="hover:text-orange-400 transition-colors">Infos pratiques</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hidden lg:grid lg:grid-cols-4 lg:gap-6 lg:mb-6 lg:items-center">
+      <div>
+        <img class="w-20" src={FestivalLogo.src} alt="">
+        <h3 class="font-cinzel">Festiv'Halloween</h3>
+      </div>
+      <div>
+        <h2 class="font-cinzel font-bold text-lg mb-4 text-orange-500 text-left pl-1">Navigation</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/festival" class="hover:text-orange-400 transition-colors">Le Festival</a></li>
+          <li><a href="/programme" class="hover:text-orange-400 transition-colors">Programme</a></li>
+          <li><a href="/billeterie" class="hover:text-orange-400 transition-colors">Billetterie</a></li>
+          <li><a href="/films" class="hover:text-orange-400 transition-colors">Les Films</a></li>
+          <li><a href="/invites" class="hover:text-orange-400 transition-colors">Les Invités</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-cinzel font-bold text-lg mb-4 text-orange-500 text-left pl-1">Infos Légales</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/confidentialite" class="hover:text-orange-400 transition-colors">Confidentialité</a></li>
+          <li><a href="/mentions-legales" class="hover:text-orange-400 transition-colors">Mentions légales</a></li>
+          <li><a href="/cookies" class="hover:text-orange-400 transition-colors">Cookies</a></li>
+          <li><a href="/cgv" class="hover:text-orange-400 transition-colors">CGV</a></li>
+          <li><a href="/cgu" class="hover:text-orange-400 transition-colors">CGU</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-cinzel font-bold text-lg mb-4 text-orange-500 text-left pl-1">Contact</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/contact" class="hover:text-orange-400 transition-colors">Nous contacter</a></li>
+          <li><a href="/reservation" class="hover:text-orange-400 transition-colors">Réserver un film</a></li>
+          <li><a href="/infos-pratiques" class="hover:text-orange-400 transition-colors">Infos pratiques</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-6 mt-2">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex flex-col items-center lg:flex-row lg:gap-4">
+          <h2 class="font-cinzel font-bold text-base mb-3 lg:mb-0 text-orange-500">Suivez-nous</h2>
+          <ul class="flex justify-center items-center gap-4 mb-4 lg:mb-0">
+            <li>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/school/mmimontbeliard/posts/?feedView=all"
+                class="block p-2 bg-gray-900 rounded-full hover:bg-gray-800 transition-colors"
+                aria-label="Nous suivre sur Linkedin"
+              >
+                <img class="w-5 h-5" src={LinkedinIcon.src} alt="" />
+              </a>
+            </li>
+            <li>
+              <a 
+                target="_blank" 
+                href="https://www.instagram.com/mmi_montbeliard/" 
+                class="block p-2 bg-gray-900 rounded-full hover:bg-gray-800 transition-colors"
+                aria-label="Nous suivre sur Instagram"
+              >
+                <img class="w-5 h-5" src={InstagramIcon.src} alt="" />
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://www.facebook.com/mmimontbeliard/?locale=fr_FR"
+                class="block p-2 bg-gray-900 rounded-full hover:bg-gray-800 transition-colors"
+                aria-label="Nous suivre sur Facebook"
+              >
+                <img class="w-5 h-5" src={FacebookIcon.src} alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <p class="text-center lg:text-right py-2 text-xs text-gray-400">
+          Projet étudiant MMi Montbéliard 2024
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>

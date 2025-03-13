@@ -16,7 +16,7 @@ const evenements = await getAllEvents();
     <ul class="flex flex-col justify-center items-center gap-8">
       {
         evenements.map((evenement) => (
-          <li class="w-full mx-auto max-w-3xl">
+          <li class="w-full mx-auto max-w-3xl min-w-2xs">
             <CardEvenements {...evenement} />
           </li>
         ))

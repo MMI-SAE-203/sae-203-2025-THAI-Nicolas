@@ -10,96 +10,113 @@ if (!film) {
 ---
 
 <Layout footerMargin="pt-20">
-  <section>
-    <header>
-      <h1 class="text-white">{film.titre}</h1>
+  <div class="container mx-auto px-4 py-8">
+    <!-- Titre centré en haut -->
+    <header class="mb-8 md:mb-12 text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-cinzel ">{film.titre}</h1>
     </header>
-
-    <div class="flex flex-col gap-8">
-      <div class="flex justify-center items-center mx-auto">
-        <img src={film.img} alt="Image de la couverture" />
+    
+    <!-- Section principale avec affiche et informations -->
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-10">
+      <!-- Colonne gauche : Affiche + informations -->
+      <div class="w-full lg:w-96 flex flex-col gap-6">
+        <!-- Affiche du film -->
+        <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
+          <img 
+            src={film.img} 
+            alt={`Affiche du film ${film.titre}`} 
+            class="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover"
+          />
+        </div>
+        
+        <!-- Informations sur le film -->
+        <div class="flex flex-col gap-3 mx-auto lg:mx-0 max-w-md">
+          <p class="font-bold text-start">
+            SORTIE : <span class="font-normal">{film.date_sortie}</span>
+          </p>
+          <p class="font-bold text-start">
+            RÉALISATEUR : <span class="font-normal">{film.realisateur}</span>
+          </p>
+          <p class="font-bold text-start">
+            LIMITE D'AGE : <span class="font-normal">-{film.limite_age} ans</span>
+          </p>
+          <p class="font-bold text-start">
+            PRODUCTION : <span class="font-normal">{film.production}</span>
+          </p>
+          <p class="font-bold text-start">
+            DURÉE : <span class="font-normal">{film.duree} min</span>
+          </p>
+          <p class="font-bold text-start">
+            GENRE : 
+            <span class="font-normal text-sm bg-black text-sweetwhite rounded-full px-2 py-0.5 ml-1">{film.genre[0]}</span>
+            {film.genre[1] && 
+              <span class="font-normal text-sm bg-purple text-sweetwhite rounded-full px-2 py-0.5 ml-1">{film.genre[1]}</span>
+            }
+          </p>
+        </div>
       </div>
-      <div class="flex flex-col justify-center mx-auto gap-2">
-        <p class="font-bold text-start">
-          SORTIE : <span class="font-normal">{film.date_sortie}</span>
-        </p>
-        <p class="font-bold text-start">
-          RÉALISATEUR : <span class="font-normal">{film.realisateur}</span>
-        </p>
-        <p class="font-bold text-start">
-          LIMITE D'AGE : <span class="font-normal">-{film.limite_age} ans</span>
-        </p>
-        <p class="font-bold text-start">
-          PRODUCTION : <span class="font-normal">{film.production}</span>
-        </p>
-        <p class="font-bold text-start">
-          DURÉE : <span class="font-normal">{film.duree} min</span>
-        </p>
-        <p class="font-bold text-start">
-          GENRE : <span
-            class="font-normal text-sm bg-sweetwhite text-black rounded-full px-2 py-0.5"
-            >{film.genre[0]}</span
-          >
-          <span
-            class="font-normal text-sm bg-purple text-sweetwhite rounded-full px-2 py-0.5"
-            >{film.genre[1]}</span
-          >
-        </p>
+      
+      <!-- Colonne droite : Synopsis -->
+      <div class="w-full lg:w-3/5">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold mb-4">Synopsis</h2>
+          <div
+            class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+            set:html={film.synopsis}
+          />
+        </div>
       </div>
     </div>
-  </section>
+  
+    <!-- Sections inchangées -->
+    <section class="mt-12 bg-sweetwhite text-black">
+      <header class="mb-4">
+        <h2 class="text-2xl font-bold">Bande-Annonce</h2>
+      </header>
+      <iframe
+      class="w-full h-full"
+      src={film.lien}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    </section>
 
-  <section>
-    <header>
-      <h2>Synopsys</h2>
-    </header>
-    <div
-      class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
-      set:html={film.synopsis}
-    />
-  </section>
+    <section class="mt-12 bg-sweetwhite text-black">
+      <header class="mb-4">
+        <h2 class="text-2xl font-bold">Biographie du réalisateur</h2>
+      </header>
+      <div
+        class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+        set:html={film.bio_realisateur}
+      />
+    </section>
 
-  <section>
-    <header>
-      <h2>Bande-Annonce</h2>
-    </header>
-  </section>
+    {
+      film.expand?.invite_associes && (
+        <section class="mt-12 bg-sweetwhite text-black">
+          <header class="mb-4">
+            <h2 class="text-2xl font-bold">Invités Associé</h2>
+          </header>
+          <a
+            class="flex flex-col justify-center items-center"
+            href={`/invites/${film.expand.invite_associes.id}`}
+          >
+            <img
+              class="w-50"
+              src={film.expand.invite_associes.img}
+              alt={`Photo de ${film.expand.invite_associes.nom}`}
+            />
 
-  <section>
-    <header>
-      <h2>Biographie du réalisateur</h2>
-    </header>
-    <div
-      class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
-      set:html={film.bio_realisateur}
-    />
-  </section>
-
-  {
-    film.expand?.invite_associes && (
-      <section>
-        <header>
-          <h2>Invités Associé</h2>
-        </header>
-        <a
-          class="flex flex-col justify-center items-center"
-          href={`/invites/${film.expand.invite_associes.id}`}
-        >
-          <img
-            class="w-50"
-            src={film.expand.invite_associes.img}
-            alt={`Photo de ${film.expand.invite_associes.nom}`}
-          />
-
-          <h3 class="text-sm mt-2">
-            {film.expand.invite_associes.prenom}{" "}
-            {film.expand.invite_associes.nom}
-          </h3>
-          <p class="lowercase italic font-normal first-letter:uppercase">
-            {film.expand.invite_associes.metier}
-          </p>
-        </a>
-      </section>
-    )
-  }
+            <h3 class="text-sm mt-2 text-black">
+              {film.expand.invite_associes.prenom}{" "}
+              {film.expand.invite_associes.nom}
+            </h3>
+            <p class="lowercase italic font-normal first-letter:uppercase text-black">
+              {film.expand.invite_associes.metier}
+            </p>
+          </a>
+        </section>
+      )
+    }
+  </div>
 </Layout>

@@ -1,0 +1,55 @@
+---
+import Layout from "./Layout.astro";
+import { Picture } from 'astro:assets';
+const { title, description, subTitle, src, alt, paragraphe, classContent = "" } = Astro.props;
+---
+<Layout title={title} description={description} footerMargin="mt-20">
+  <div class="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] overflow-hidden">
+    <Picture 
+        pictureAttributes={{class: "inset-0 w-full h-full object-cover absolute z-0"}}
+        formats={['avif','webp']} 
+        src={src} 
+        alt={alt} 
+        widths={[540, 1024, src.width]} 
+        sizes={`(max-width: 540px) 540px, (max-width: 1024px) 1024px, ${src.width}px`}  
+    />
+    
+    <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+    
+    <div class="relative z-20 container mx-auto px-6 py-16 md:py-20 lg:py-24 text-center text-white">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-cinzel tracking-wide">
+        {title}
+      </h1>
+      {subTitle && (
+        <h2 class="text-xl md:text-2xl lg:text-3xl mb-8 font-cinzel relative inline-block underline ">
+          {subTitle}
+        </h2>
+      )}
+      <p class="font-montserrat text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        {paragraphe}
+      </p>
+      <a 
+        href="" 
+        class="inline-block bg-white hover:opacity-50 text-black px-8 py-2 rounded-sm uppercase font-bold tracking-wide transform transition-transform duration-300"
+      >
+        Découvrir
+      </a>
+      
+      <div class="max-w-2xl mx-auto">
+        <slot name="chapo"/>
+      </div>
+    </div>
+  </div>
+  
+  <div class={classContent}>
+    <slot name="content"/>
+  </div>
+</Layout>
+
+<style>
+  :global(picture img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

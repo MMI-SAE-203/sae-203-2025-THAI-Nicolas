@@ -4,18 +4,78 @@ import ShoppingCart from "/src/assets/icones/shopping-cart.svg";
 ---
 
 <header
-  class="bg-black flex justify-between items-center py-6 px-8 relative z-50"
+  class="bg-black flex justify-between items-center py-3 px-8 relative z-50"
 >
   <div>
     <a href="/index.html" aria-label="Retourner à l'accueil">
-      <img class="w-20" src={FestivalLogo.src} alt="Logo du festival" />
+      <img class="w-16" src={FestivalLogo.src} alt="Logo du festival" />
     </a>
   </div>
 
-  <div class="flex items-center gap-8">
-    <a href="/panier.html" aria-label="Voir le panier">
-      <img src={ShoppingCart.src} alt="Panier" />
-    </a>
+  <div class="flex items-center gap-4 lg:gap-8">
+    <nav
+      id="mainNav"
+      class="fixed inset-0 flex flex-col justify-center items-center translate-x-full transition-transform duration-300 z-40 bg-[url('/src/assets/img/fond-menu-image.webp')] bg-cover lg:bg-none lg:relative lg:inset-auto lg:translate-x-0 lg:flex-row lg:flex-1 lg:justify-center"
+      aria-hidden="true"
+    >
+      <ul class="space-y-16 lg:flex lg:space-y-0 lg:space-x-3 xl:space-x-6 2xl:space-x-12 lg:items-center lg:justify-center lg:mx-auto">
+        <li>
+          <a
+            href="/festival"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >LE FESTIVAL</a>
+        </li>
+        <li>
+          <a
+            href="/programme"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >PROGRAMME</a>
+        </li>
+        <li>
+          <a
+            href="/activites"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >ACTIVITÉS</a>
+        </li>
+        <li>
+          <a
+            href="/films"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >FILMS</a>
+        </li>
+        <li>
+          <a
+            href="/invites"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >INVITÉS</a>
+        </li>
+        <li>
+          <a
+            href="/infos-pratiques"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >INFOS</a>
+        </li>
+        <li>
+          <a
+            href="/contact"
+            class="text-sweetwhite text-2xl font-montserrat font-bold hover:opacity-80 lg:text-[12px] md:text-[14px] xl:text-sm 2xl:text-lg whitespace-nowrap"
+            >CONTACT</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-4 lg:gap-8 ">
+      
+      
+      <a href="/panier.html" aria-label="Voir le panier">
+        <img src={ShoppingCart.src} alt="Panier" class="w-6 h-6 " />
+      </a>
+      <a href="/billeterie" aria-label="Acheter des billets" class="hidden lg:block">
+        <button class="bg-orange-500 hover:bg-orange-600 transition-colors duration-300 text-white font-bold py-2 px-4 rounded-sm text-xs">
+          BILLETTERIE
+        </button>
+      </a>
+    </div>
 
     <button
       id="menuToggle"
@@ -28,73 +88,32 @@ import ShoppingCart from "/src/assets/icones/shopping-cart.svg";
       <span class="menu-btn__bar"></span>
       <span class="menu-btn__bar"></span>
     </button>
-
-    <nav
-      id="mainNav"
-      class="fixed inset-0 bg-[url('/src/assets/img/fond-menu-image.webp')] bg-cover flex flex-col justify-center items-center translate-x-full transition-transform duration-300 z-40"
-      aria-hidden="true"
-    >
-      <ul class="space-y-16 mr-20">
-        <li>
-          <a
-            href="/festival"
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >LE FESTIVAL</a
-          >
-        </li>
-        <li>
-          <a
-            href="/programme"
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >PROGRAMME</a
-          >
-        </li>
-        <li>
-          <a
-            href="/activites"
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >LES ACTIVITÉS</a
-          >
-        </li>
-        <li>
-          <a
-            href="/films"
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >LES FILMS</a
-          >
-        </li>
-        <li>
-          <a
-            href="/invites"
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >NOS INVITÉS</a
-          >
-        </li>
-        <li>
-          <a
-            href=""
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >INFOS PRATIQUES</a
-          >
-        </li>
-        <li>
-          <a
-            href=""
-            class="text-sweetwhite text-3xl font-montserrat font-bold hover:opacity-80"
-            >CONTACT</a
-          >
-        </li>
-      </ul>
-    </nav>
   </div>
 </header>
 
+<style>
+  @media (min-width: 1024px) {
+    #mainNav {
+      transform: none !important;
+      background-image: none !important;
+    }
+  }
+  
+  .menu-btn {
+    display: block;
+  }
+  
+  @media (min-width: 1024px) {
+    .menu-btn {
+      display: none !important;
+    }
+  }
+</style>
+
 <script>
-  // Définissons une variable globale pour suivre si le script a été exécuté
   let initialized = false;
 
   function setupMenu() {
-    // Éviter les doubles initialisations
     if (initialized) return;
     initialized = true;
 
@@ -110,20 +129,32 @@ import ShoppingCart from "/src/assets/icones/shopping-cart.svg";
         document.body.classList.toggle("noscroll", !isExpanded);
       });
     }
+
+    function updateMenuState() {
+      if (window.innerWidth >= 1024) {
+        menu.setAttribute("aria-hidden", "false");
+        menu.classList.remove("translate-x-full");
+      } else {
+        const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menu.setAttribute("aria-hidden", !isExpanded);
+        if (!isExpanded) {
+          menu.classList.add("translate-x-full");
+        }
+      }
+    }
+    
+    updateMenuState();
+    window.addEventListener('resize', updateMenuState);
   }
 
-  // Exécuter au chargement initial
   setupMenu();
 
-  // Réinitialiser la variable d'initialisation à chaque transition
   document.addEventListener("astro:after-swap", () => {
     initialized = false;
   });
 
-  // Réexécuter après chaque transition de page
   document.addEventListener("astro:page-load", setupMenu);
 
-  // Nettoyer les classes noscroll quand on quitte une page
   document.addEventListener("astro:before-swap", () => {
     document.body.classList.remove("noscroll");
   });

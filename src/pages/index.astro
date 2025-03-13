@@ -5,80 +5,141 @@ import Spider from "../assets/icones/spider.webp";
 import Murderer from "../assets/icones/murderer.webp";
 import LogoIut from "../assets/icones/logo-iut.webp";
 import logoMmi from "../assets/icones/logo-mmi.webp";
-import { getTarifsMiniature } from "../../backend/backend.mjs";
+import { getTarifsMiniature, getFilmsByDate } from "../../backend/backend.mjs";
+import imgHero from '../assets/img/image-festival.webp'
+import LayoutWithHero from "../layouts/LayoutWithHero.astro";
 const minitarifs = await getTarifsMiniature();
+const films = await getFilmsByDate();
+
+const title = "Festiv'Halloween";
+const subTitle = "Du 29 au 31 Octobre";
+const paragraphe = "Passez un agréable moment de peur et d'horreur avec nos films terrifiants"
+const description = "Festiv'Halloween : le festival de films d'horreur du 29 au 31 octobre. Découvrez une programmation terrifiante, des projections exclusives et des animations pour tous les amateurs de frissons."
+const alt = "Image du festiv'Halloween"
+
 ---
 
-<Layout
-  title="Accueil"
-  description="Page d'accueil de Festiv'Halloween "
+<LayoutWithHero
+  title={title}
+  description={description}
+  subTitle={subTitle}
+  paragraphe={paragraphe}
+  src={imgHero}
+  alt={alt}
   footerMargin="mt-20"
 >
-  <div>
-    <h1 class="">Festiv'<span>Halloween</span></h1>
-    <p class="text-center">29 au 31 octobre</p>
-    <h2>Passez un agréable moment de peur</h2>
-    <div class="flex justify-center items-center">
-      <a href="">Découvrir</a>
-    </div>
-  </div>
+<Fragment slot="content">
+
+  
 
   <div>
-    <section>
-      <header>
-        <h2>Le meilleur du cinéma d'horreurs en un festival de 3 jours !</h2>
-      </header>
-      <div>
-        <div>
-          <span></span>
-          <img src={Spider.src} alt="Araignée" aria-hidden="true" />
+    <section class="container mx-auto px-4 py-16 max-w-6xl text-black bg-sweetwhite">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div class="w-full md:w-2/5 flex justify-center md:justify-start">
+          <div class="relative">
+            <span class="absolute w-40 h-40 rounded-full bg-orange-500/20 -z-10 -left-6 -top-6"></span>
+            <img 
+              src={Spider.src} 
+              alt="Araignée" 
+              aria-hidden="true"
+              class="w-52 h-auto transform hover:rotate-12 transition-transform duration-300"
+            />
+          </div>
         </div>
-        <div>
-          <p>
+        
+        <div class="w-full md:w-3/5 text-center md:text-left">
+          <header class="mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black font-raleway">
+              Le meilleur du cinéma d'horreurs en un festival de 3 jours !
+            </h2>
+          </header>
+          
+          <p class="text-lg mb-8 font-montserrat">
             Plongez dans l'épouvante à travers des films terrifiants,
-            sélectionnées pour tous les âges et tous les niveaux de courages !
+            sélectionnés pour tous les âges et tous les niveaux de courage !
           </p>
-          <a href="/billeterie.html">Je prends ma place</a>
+          <a 
+            href="/billeterie" 
+            class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-sm uppercase font-bold tracking-wide transform transition-all duration-300 hover:shadow-lg"
+          >
+            Je prends ma place
+          </a>
         </div>
       </div>
     </section>
 
-    <section>
-      <header>
-        <h2>Réservez un créneau pour diffuser votre film !</h2>
-      </header>
-      <div>
-        <div>
-          <p>Vous êtes réalisateur ou créateur de films d'horreur ?</p>
-          <p>
+    <section class="container mx-auto px-4 py-16 max-w-6xl bg-sweetwhite text-black">
+      <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div class="w-full md:w-3/5 text-center md:text-left">
+          <header class="mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black font-raleway">
+              Réservez un créneau pour diffuser votre film !
+            </h2>
+          </header>
+          
+          <p class="text-lg mb-4 font-montserrat">
+            Vous êtes réalisateur ou créateur de films d'horreur ?
+          </p>
+          <p class="text-lg mb-8 font-montserrat">
             Festiv'Halloween vous offre une plateforme unique pour présenter
             votre travail devant un public passionné par l'épouvante !
           </p>
-          <a href="/reserver-un-film.html">Réserver</a>
+          
+          <a 
+            href="/reserver-un-film" 
+            class="inline-block bg-black hover:bg-orange-600 text-white px-8 py-3 rounded-sm uppercase font-bold tracking-wide transform transition-all duration-300 hover:shadow-lg"
+          >
+            Réserver
+          </a>
         </div>
-        <div>
-          <img src={Murderer.src} alt="Tueur" aria-hidden="true" />
+        
+        <div class="w-full md:w-2/5 flex justify-center md:justify-end">
+          <div class="relative">
+            <span class="absolute w-40 h-40 rounded-full bg-orange-500/20 -z-10 -right-6 -top-6"></span>
+            <img 
+              src={Murderer.src} 
+              alt="Tueur" 
+              aria-hidden="true"
+              class="w-52 h-auto transform hover:-rotate-12 transition-transform duration-300"
+            />
+          </div>
         </div>
       </div>
     </section>
   </div>
 
-  <section>
-    <header>
-      <h2>Les films à la une</h2>
-    </header>
+  <section class=" mx-auto  py-16 ">
+  <header class="mb-10 text-center">
+    <h2 class="text-3xl md:text-4xl font-cinzel font-bold mb-4 text-sweetwhite">Les films à la une</h2>
+  </header>
+  
+  <ul class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-6xl mx-auto px-4">
+    {films.slice(0,8).map((film) => (
+      <li class="flex justify-center">
+        <a href={`/films/${film.id}`} class="block w-full hover:opacity-80 transition-opacity">
+          <img 
+            src={film.img} 
+            alt="Image de la couverture" 
+            class="w-full h-auto object-cover rounded-md shadow-md aspect-[2/3]"
+          />
+        </a>
+      </li>
+    ))}
+  </ul>
 
-    <a class="flex justify-center items-center" href="/programme">
-      <img src="" alt="" />
-      <p>Le Programme</p>
-    </a>
-  </section>
+  <a 
+    class="flex justify-center items-center gap-2 mx-auto w-fit bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-sm uppercase font-bold tracking-wide transition-all duration-300 hover:shadow-lg" 
+    href="/programme"
+  >
+    <span>Voir le Programme complet</span>
+  </a>
+</section>
 
-  <section class="bg-sweetwhite text-black">
+  <section class="bg-sweetwhite text-black mb-20">
     <header>
       <h2>Les tarifs</h2>
     </header>
-    <ul class="flex flex-col justify-center items-center gap-10 mb-20">
+    <ul class="flex flex-col justify-center items-center gap-10 mb-20 lg:flex-row">
       {
         minitarifs.map((minitarif) => (
           <li>
@@ -96,19 +157,20 @@ const minitarifs = await getTarifsMiniature();
     <header>
       <h2>Nos partenaires</h2>
     </header>
-    <div class="flex flex-col justify-center gap-8 pt-8">
+    <div class="flex flex-col justify-center gap-14 pt-8 lg:flex-row items-center lg:gap-40">
       <a
         href="https://www.iut-nfc.univ-fcomte.fr/b-u-t-metiers-du-multimedia-et-de-linternet/"
       >
-        <img class="w-1/3 mx-auto" src={logoMmi.src} alt="Logo Mmi" />
+        <img class="w-40 mx-auto" src={logoMmi.src} alt="Logo Mmi" />
       </a>
       <a href="https://www.iut-nfc.univ-fcomte.fr/">
         <img
-          class="w-1/3 mx-auto"
+          class="w-40 mx-auto"
           src={LogoIut.src}
           alt="Logo IUT Nord-Franche-Comté"
         />
       </a>
     </div>
   </section>
-</Layout>
+</Fragment>
+</LayoutWithHero>

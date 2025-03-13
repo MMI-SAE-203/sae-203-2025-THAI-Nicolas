@@ -14,19 +14,19 @@ if (evenement.type === "Film" && evenement.id_original) {
 ---
 
 <a
-  class="flex justify-center items-stretch w-5/6 mx-auto"
+  class="flex flex-col sm:flex-row justify-center items-stretch w-full sm:w-5/6 mx-auto"
   href={targetRoute}
 >
-  <div class="w-2/5">
+  <div class="w-full sm:w-2/5">
     <img
-      class="w-full h-full object-cover"
+      class="w-full h-48 sm:h-full object-cover"
       src={evenement.img}
       alt={`Image de l'événement ${evenement.titre}`}
     />
   </div>
 
   <div
-    class="bg-sweetwhite text-black w-3/5 flex flex-col justify-start items-center py-4"
+    class="bg-sweetwhite text-black w-full sm:w-3/5 flex flex-col justify-start items-center py-4"
   >
     <h3 class="font-extrabold text-center font-montserrat my-3">
       {evenement.titre}
@@ -36,12 +36,12 @@ if (evenement.type === "Film" && evenement.id_original) {
 
     {
       evenement.expand?.invite_associes && (
-        <div class="mt-6 mb-2 flex items-center justify-center w-full">
-          <div class="w-20 text-right mr-4">
+        <div class="mt-6 mb-2 flex flex-col sm:flex-row items-center justify-center w-full">
+          <div class="sm:w-20 text-center sm:text-right sm:mr-4 mb-2 sm:mb-0">
             <p class="text-xs">Avec :</p>
           </div>
 
-          <div class="flex items-center w-32">
+          <div class="flex items-center sm:w-32">
             <div class="w-10 flex justify-center">
               <img
                 class="w-8 h-8 rounded-full object-cover"
@@ -50,7 +50,7 @@ if (evenement.type === "Film" && evenement.id_original) {
               />
             </div>
             <div class="ml-1">
-              <p class="text-[8px] font-bold">
+              <p class="text-[8px] sm:text-[8px] font-bold">
                 {evenement.expand.invite_associes.prenom}{" "}
                 {evenement.expand.invite_associes.nom}
               </p>

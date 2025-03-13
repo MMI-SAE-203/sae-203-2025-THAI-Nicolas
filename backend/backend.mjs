@@ -54,10 +54,8 @@ export async function getFilmById(id) {
     expand: "invite_associes",
   });
 
-  // Traiter l'URL de l'image principale du film
   film.img = pb.files.getURL(film, film.img);
 
-  // Traiter l'URL de l'image de l'invité associé s'il existe
   if (film.expand?.invite_associes) {
     film.expand.invite_associes.img = pb.files.getURL(
       film.expand.invite_associes,
@@ -86,13 +84,11 @@ export async function getActivitesById(id) {
 
 export async function getInviteById(id) {
   const invite = await pb.collection("invites").getOne(id, {
-    expand: "evenement", // Assurez-vous que le nom de la relation est correct (singulier)
+    expand: "evenement",
   });
 
-  // Traiter l'image de l'invité
   invite.img = pb.files.getURL(invite, invite.img);
 
-  // Traiter l'image de l'événement associé si présent
   if (invite.expand?.evenement && invite.expand.evenement.img) {
     invite.expand.evenement.img = pb.files.getURL(
       invite.expand.evenement,
@@ -111,7 +107,19 @@ export async function getActivitesByAnimateurId(animateurId) {
   return activites;
 }
 
-//Autres fonctions pour mon projets //
+export async function allActiviteByAnimateurName(nom) {
+  const activites = await pb.collection("activites").getFullList({
+    filter: `animateur.nom = '${nom}'`,
+    expand: "animateur",
+  });
+  return activites;
+}
+
+export async function addFilm(data) {
+  await pb.collection("films").create(data);
+}
+
+//Autres fonctions pour mon projets (en dehors des fonctions demandées)
 
 export async function getTarifs() {
   const tarifs = await pb.collection("tarifs").getFullList({
@@ -138,14 +146,12 @@ export async function getAllEvents() {
   try {
     let evenements = await pb.collection("evenements").getFullList({
       sort: "date",
-      expand: "invite_associes", // Ajouter cette ligne pour récupérer les relations
+      expand: "invite_associes",
     });
 
     evenements = evenements.map((evenement) => {
-      // Traiter l'image de l'événement
       evenement.img = pb.files.getURL(evenement, evenement.img);
 
-      // Traiter l'image de l'invité associé s'il existe
       if (evenement.expand?.invite_associes) {
         evenement.expand.invite_associes.img = pb.files.getURL(
           evenement.expand.invite_associes,
@@ -168,10 +174,8 @@ export async function getEventById(id) {
     expand: "invite_associes",
   });
 
-  // Traiter l'URL de l'image principale de l'événement
   evenement.img = pb.files.getURL(evenement, evenement.img);
 
-  // Traiter l'URL de l'image de l'invité associé s'il existe
   if (evenement.expand?.invite_associes) {
     evenement.expand.invite_associes.img = pb.files.getURL(
       evenement.expand.invite_associes,
@@ -179,13 +183,12 @@ export async function getEventById(id) {
     );
   }
 
-  return evenement; // Corriger ici - retournez evenement au lieu de film
+  return evenement;
 }
 
 export async function formatDate(dateString) {
   const date = new Date(dateString);
 
-  // Liste des mois en français
   const months = [
     "Janvier",
     "Février",
@@ -201,11 +204,25 @@ export async function formatDate(dateString) {
     "Décembre",
   ];
 
-  // Récupération des valeurs
-  const day = date.getUTCDate(); // Utiliser getUTCDate au lieu de getDate
-  const month = months[date.getUTCMonth()]; // Utiliser getUTCMonth au lieu de getMonth
-  const hours = date.getUTCHours(); // Utiliser getUTCHours au lieu de getHours
+  const day = date.getUTCDate();
+  const month = months[date.getUTCMonth()];
+  const hours = date.getUTCHours();
 
-  // Construction de la chaîne formatée
   return `Le ${day} ${month} à ${hours}h`;
+}
+
+export async function addFormMessage(data) {
+  try {
+    await pb.collection("formulaire").create(data);
+    return {
+      success: true,
+      message: "Votre message a été envoyé avec succès.",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "Une erreur est survenue lors de l'envoi de votre message.",
+    };
+  }
 }

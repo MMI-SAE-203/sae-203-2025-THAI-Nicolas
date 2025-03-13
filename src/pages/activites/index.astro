@@ -10,7 +10,7 @@ const activities = await getActivitesByDate();
    <header>
         <h1>Les activités</h1>
    </header>
-   <ul class="flex flex-col justify-center items-center gap-8">
+   <ul class="flex flex-col justify-center items-center gap-8 lg:flex-row lg:justify-center lg:items-center mt-10">
         {
         activities.map((activite) => (
             <li>
