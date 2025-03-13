@@ -18,51 +18,61 @@ if (!invite) {
 }
 ---
 
-<Layout>
-  <section>
-    <header>
-      <h1>{invite.prenom} {invite.nom}</h1>
-    </header>
-    <div>
-      <div class="flex flex-col justify-center items-center">
-        <img src={invite.img} alt={`Photo de ${invite.prenom} ${invite.nom}`} />
-        <p>{invite.metier}</p>
+<Layout footerMargin="pt-20">
+  <div class="container mx-auto px-4 py-8">
+    <section class="mb-12 text-black bg-sweetwhite">
+      <header class="mb-8 text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-cinzel">{invite.prenom} {invite.nom}</h1>
+      </header>
+      
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div class="w-full lg:w-96 flex flex-col gap-6">
+          <div class="bg-black p-2 shadow-lg mx-auto lg:mx-0">
+            <img 
+              src={invite.img} 
+              alt={`Photo de ${invite.prenom} ${invite.nom}`}
+              class="w-64 md:w-72 lg:w-full max-w-sm mx-auto lg:mx-0 h-auto object-cover" 
+            />
+          </div>
+          <p class="text-xl text-center lg:text-left lowercase italic first-letter:uppercase">{invite.metier}</p>
+        </div>
+        
+        <div class="w-full lg:w-3/5">
+          <h2 class="text-2xl font-bold mb-4">Biographie</h2>
+          <div
+            class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+            set:html={invite.biographie}
+          />
+        </div>
       </div>
-      <div>
-        <h2>Biographie</h2>
-        <div
-          class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
-          set:html={invite.biographie}
-        />
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <header>
-      <h2>Ses Apparitions</h2>
-    </header>
-    <div
-      class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
-      set:html={invite.films}
-    />
-  </section>
+    <section class="mt-12 bg-sweetwhite text-black p-4 rounded-md">
+      <header class="mb-4">
+        <h2 class="text-2xl font-bold">Ses Apparitions</h2>
+      </header>
+      <div
+        class="flex-col justify-center items-center text-lg mx-8 [&>p]:pb-6"
+        set:html={invite.films}
+      />
+    </section>
 
-  <section>
-    <header>
-      <h2>Événements Associés</h2>
-    </header>
-    
-    {evenementsAssocies.length > 0 ? (
-      <ul class="flex flex-col gap-6">
-        {evenementsAssocies.map(evenement => (
-          <li class="w-full max-w-3xl mx-auto">
-            <CardEvenements {...evenement} />
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p class="text-center text-gray-500 my-4">Aucun événement associé à cet invité pour le moment.</p>
-    )}
-  </section>
+    <section class="mt-12 bg-sweetwhite text-black p-4 rounded-md">
+      <header class="mb-4">
+        <h2 class="text-2xl font-bold">Événements Associés</h2>
+      </header>
+      
+      {evenementsAssocies.length > 0 ? (
+        <ul class="flex flex-col gap-6">
+          {evenementsAssocies.map(evenement => (
+            <li class="w-full max-w-3xl mx-auto">
+              <CardEvenements {...evenement} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-center text-gray-500 my-4">Aucun événement associé à cet invité pour le moment.</p>
+      )}
+    </section>
+  </div>
 </Layout>
