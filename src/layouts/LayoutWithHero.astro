@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import ImagePB from "../components/ImagePB.astro";
 import { Picture } from 'astro:assets';
 const { title, description, subTitle, src, alt, paragraphe, classContent = "" } = Astro.props;
 ---
@@ -14,6 +15,7 @@ const { title, description, subTitle, src, alt, paragraphe, classContent = "" } 
         alt={alt} 
         widths={[540, 1024, src.width]} 
         sizes={`(max-width: 540px) 540px, (max-width: 1024px) 1024px, ${src.width}px`}  
+        loading="eager"
     />
     
     <div class="absolute inset-0 bg-black opacity-40 z-10"></div>

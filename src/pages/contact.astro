@@ -35,7 +35,7 @@ if (Astro.request.method === "POST") {
 }
 ---
 
-<Layout title="Contact" description="Contactez l'équipe du Festiv'Halloween">
+<Layout title="Contact" description="Contactez l'équipe du Festiv'Halloween" footerMargin="pt-20">
     <div class="bg-black w-full text-white">
         <section class="py-8 px-4 lg:py-12 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto">
             <header class="text-center mb-8 lg:mb-10">
@@ -157,6 +157,92 @@ if (Astro.request.method === "POST") {
                             )}
                         </form>
                     </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 px-4">
+            <header class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-orange-500 mb-3">Questions fréquentes</h2>
+                <p class="text-gray-300">Tout ce que vous devez savoir sur le festival</p>
+            </header>
+
+           
+            <div x-data="{ open: 0 }" class="w-full max-w-2xl mx-auto space-y-4 mb-12">
+                
+                
+                <div class="w-full bg-gray-900 rounded-md border border-gray-800">
+                    <div @click="open = open === 1 ? 0 : 1" class="flex justify-between items-center px-5 py-4 cursor-pointer">
+                        <h3 class="font-medium text-white text-lg">Comment acheter des billets pour le festival ?</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            :class="open === 1 ? 'rotate-180 text-orange-500' : 'text-white'"
+                            class="h-5 w-5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    
+                    <div x-show="open === 1" x-collapse>
+                        <p class="px-5 py-4 text-gray-300 border-t border-gray-800">
+                            Vous pouvez acheter des billets directement sur notre site web dans la section "Billetterie". 
+                            Nous proposons des billets à la journée et des pass pour l'ensemble du festival.
+                        </p>
+                    </div>
+                </div>
+                
+               
+                <div class="w-full bg-gray-900 rounded-md border border-gray-800">
+                    <div @click="open = open === 2 ? 0 : 2" class="flex justify-between items-center px-5 py-4 cursor-pointer">
+                        <h3 class="font-medium text-white text-lg">Y a-t-il une limite d'âge pour les projections ?</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            :class="open === 2 ? 'rotate-180 text-orange-500' : 'text-white'"
+                            class="h-5 w-5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    
+                    <div x-show="open === 2" x-collapse>
+                        <p class="px-5 py-4 text-gray-300 border-t border-gray-800">
+                            Oui, certains films sont soumis à des restrictions d'âge. Chaque film affiche sa 
+                            classification (-12, -16, -18) sur notre programme et à l'entrée des salles.
+                        </p>
+                    </div>
+                </div>
+                
+               
+                <div class="w-full bg-gray-900 rounded-md border border-gray-800">
+                    <div @click="open = open === 3 ? 0 : 3" class="flex justify-between items-center px-5 py-4 cursor-pointer">
+                        <h3 class="font-medium text-white text-lg">Le festival est-il accessible aux personnes à mobilité réduite ?</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            :class="open === 3 ? 'rotate-180 text-orange-500' : 'text-white'"
+                            class="h-5 w-5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    
+                    <div x-show="open === 3" x-collapse>
+                        <p class="px-5 py-4 text-gray-300 border-t border-gray-800">
+                            Absolument ! Tous nos sites de projection sont accessibles aux personnes à mobilité réduite. 
+                            Des places réservées sont disponibles dans chaque salle.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full bg-gray-900 rounded-md border border-gray-800">
+                    <div @click="open = open === 4 ? 0 : 4" class="flex justify-between items-center px-5 py-4 cursor-pointer">
+                        <h3 class="font-medium text-white text-lg">Peut-on venir au festival déguisé ?</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            :class="open === 4 ? 'rotate-180 text-orange-500' : 'text-white'"
+                            class="h-5 w-5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    
+                    <div x-show="open === 4" x-collapse>
+                        <p class="px-5 py-4 text-gray-300 border-t border-gray-800">
+                            Bien sur ! Nous encourageons même les festivaliers à venir déguisés pour l'occasion.
+                            Des concours de costumes sont organisés chaque jour avec de nombreux lots à gagner.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
