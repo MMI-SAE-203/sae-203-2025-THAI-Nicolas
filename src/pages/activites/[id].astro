@@ -19,7 +19,7 @@ if (!activite) {
 }
 ---
 
-<Layout footerMargin="pt-20">
+<Layout title=`${activite.titre}` description=`Pages d'informations détaillées sur l'activité ${activite.titre}` footerMargin="pt-20">
   <div class="container mx-auto px-4 py-8">
     
     <header class="mb-8 md:mb-12 text-center">
@@ -82,7 +82,6 @@ if (!activite) {
         set:html={activite.programme}
       />
     </section>
-
    
     <section class="mt-12 bg-sweetwhite text-black p-4 rounded-md">
       <header class="mb-6">
